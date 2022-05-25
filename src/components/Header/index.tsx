@@ -10,7 +10,7 @@ export function Header( ){
             <div className={styles.headerContent}>
                 <nav>
                     <Link  href="/">
-                        <a className={asPath == '/' ? styles.active : ''}>Home</a>
+                        <a className={asPath == '/' ? styles.active : ''}>Ho</a>
                     </Link>
                    <Link href="/anime">
                         <a className={asPath == '/anime' ? styles.active : ''} >Anime</a>
