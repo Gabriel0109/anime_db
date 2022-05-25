@@ -1,0 +1,45 @@
+:root {
+  --bg-color: #202020;
+  --text-color: #f8f9fa;
+  --grey-100: #2B2C28;
+  --grey-200:#131515;
+  --cyan-100: #7DE2D1;
+  --cyan-200: #339989;
+
+}
+
+@media (max-width: 1080px) {
+  html {
+      font-size: 93.75%;
+  }
+}
+
+@media (max-width: 728px) {
+  html {
+      font-size: 87.5%;
+  }
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body{
+  background: var(--bg-color);
+  color: var(--text-color);
+}
+
+body, input, select, textarea, button {
+  font: 400 1rem "Roboto", sans-serif;
+}
+
+button {
+  cursor: pointer;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
