@@ -3,8 +3,7 @@ import type { AppProps } from "next/app";
 import { Header } from "../components/Header";
 import "../styles/globals.scss";
 
-import { useQuery, gql } from "@apollo/client";
-import { ApolloProvider, ApolloClient, InMemoryCache } from "@apollo/client";
+import { ApolloProvider } from "@apollo/client";
 import client from "../utils/apollo-client";
 
 function MyApp({ Component, pageProps }: AppProps) {
