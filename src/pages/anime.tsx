@@ -1,6 +1,7 @@
 import { useQuery, gql } from "@apollo/client";
 import { Anime } from "../components/Anime";
 import { Banner } from "../components/Banner";
+import styled from "../styles/anime.module.scss";
 
 // import mediaQuery from "../assets/graphql/media.graphql";
 
@@ -86,16 +87,23 @@ const Home: NextPage = () => {
 
 	return (
 		<>
-			<Banner>
+			<Banner></Banner>
+			<div className={styled.RowAnime}>
 				{animes.Page.media.map((anime: any) => (
 					<Anime
 						key={anime.id}
 						title={anime.title.english}
+						season={anime.season}
+						score={anime.averageScore}
+						popularity={anime.popularity}
+						episodes={anime.episodes}
+						genres={anime.genres}
+						status={anime.status}
 					/>
 				))}
-			</Banner>
+			</div>
 		</>
 	);
-}
+};
 
-export default Home
+export default Home;
