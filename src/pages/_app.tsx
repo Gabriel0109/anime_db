@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import type { AppProps } from "next/app";
 import { Header } from "../components/Header";
-import "../styles/globals.scss";
+import "../assets/styles/globals.scss";
 
 import { ApolloProvider } from "@apollo/client";
 import client from "../utils/apollo-client";

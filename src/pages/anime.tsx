@@ -2,6 +2,8 @@ import { useQuery, gql } from "@apollo/client";
 import { Anime } from "../components/Anime";
 import { Banner } from "../components/Banner";
 
+// import mediaQuery from "../assets/graphql/media.graphql";
+
 const Home: NextPage = () => {
 	const QUERY = gql`
 		query ($page: Int, $perPage: Int, $search: String) {
@@ -35,6 +37,10 @@ const Home: NextPage = () => {
 					source
 					popularity
 					averageScore
+					externalLinks {
+						url
+						site
+					}
 				}
 			}
 		}
