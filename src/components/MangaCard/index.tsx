@@ -1,8 +1,8 @@
 import styles from "./styles.module.scss";
 
-export function Anime(props: any) {
+export function MangaCard(props: any) {
 	return (
-		<div className={styles.animeCard} key={props.id}>
+		<div className={styles.mangaCard} key={props.id}>
 			<h3>{props.title}</h3>
 			<h4>Episodes: {props.episodes}</h4>
 			<p>Season: {props.season}</p>

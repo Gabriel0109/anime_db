@@ -1,13 +1,10 @@
 import type { NextPage } from "next";
-import { Banner } from "../components/Banner";
+import { BannerAnime } from "../components/BannerAnime";
 
 const Home: NextPage = () => {
-
 	return (
 		<>
-			<Banner>
-				
-			</Banner>
+			<BannerAnime></BannerAnime>
 		</>
 	);
 };

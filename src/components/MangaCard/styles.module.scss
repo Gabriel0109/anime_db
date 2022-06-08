@@ -1,0 +1,15 @@
+.mangaCard {
+    width: 30%;
+    background: rgb(0,0,0,0.5);
+    color: #FFF;
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
+    height: 250px;
+    margin: 1rem;
+
+
+    h3 {
+        text-align: center;
+    }
+}

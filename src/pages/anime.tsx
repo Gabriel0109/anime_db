@@ -1,6 +1,6 @@
 import { useQuery, gql } from "@apollo/client";
-import { Anime } from "../components/Anime";
-import { Banner } from "../components/Banner";
+import { AnimeCard } from "../components/AnimeCard";
+import { BannerAnime } from "../components/BannerAnime";
 import styled from "../styles/anime.module.scss";
 
 const Home: NextPage = () => {
@@ -81,10 +81,10 @@ const Home: NextPage = () => {
 
 	return (
 		<>
-			<Banner></Banner>
+			<BannerAnime></BannerAnime>
 			<div className={styled.RowAnime}>
 				{animes.Page.media.map((anime: any) => (
-					<Anime
+					<AnimeCard
 						key={anime.id}
 						title={anime.title.english}
 						season={anime.season}
