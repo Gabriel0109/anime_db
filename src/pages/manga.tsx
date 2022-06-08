@@ -38,6 +38,42 @@ const Home: NextPage = () => {
 					source
 					popularity
 					averageScore
+					externalLinks {
+						url
+						site
+					}
+					characters(sort: [ROLE, ID], perPage: 12) {
+						edges {
+							id
+							role
+							node {
+								name {
+									full
+								}
+								image {
+									large
+								}
+								siteUrl
+							}
+						}
+					}
+					relations {
+						edges {
+							node {
+								id
+								siteUrl
+								title {
+									userPreferred
+								}
+								coverImage {
+									large
+									color
+								}
+								format
+								status
+							}
+						}
+					}
 				}
 			}
 		}
@@ -94,6 +130,8 @@ const Home: NextPage = () => {
 						episodes={manga.episodes}
 						genres={manga.genres}
 						status={manga.status}
+						link={manga.externalLinks}
+						image={manga.relations.edges}
 					/>
 				))}
 			</div>
