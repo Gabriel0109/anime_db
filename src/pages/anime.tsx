@@ -3,6 +3,8 @@ import { AnimeCard } from "../components/AnimeCard";
 import { BannerAnime } from "../components/BannerAnime";
 import styled from "../styles/anime.module.scss";
 
+// import mediaQuery from "../assets/graphql/media.graphql";
+
 const Home: NextPage = () => {
 	const QUERY = gql`
 		query ($page: Int, $perPage: Int, $search: String) {
@@ -36,6 +38,42 @@ const Home: NextPage = () => {
 					source
 					popularity
 					averageScore
+					externalLinks {
+						url
+						site
+					}
+					characters(sort: [ROLE, ID], perPage: 12) {
+						edges {
+							id
+							role
+							node {
+								name {
+									full
+								}
+								image {
+									large
+								}
+								siteUrl
+							}
+						}
+					}
+					relations {
+						edges {
+							node {
+								id
+								siteUrl
+								title {
+									userPreferred
+								}
+								coverImage {
+									large
+									color
+								}
+								format
+								status
+							}
+						}
+					}
 				}
 			}
 		}
@@ -93,6 +131,8 @@ const Home: NextPage = () => {
 						episodes={anime.episodes}
 						genres={anime.genres}
 						status={anime.status}
+						link={anime.externalLinks}
+						image={anime.relations.edges}
 					/>
 				))}
 			</div>
