@@ -42,37 +42,8 @@ const Home: NextPage = () => {
 						url
 						site
 					}
-					characters(sort: [ROLE, ID], perPage: 12) {
-						edges {
-							id
-							role
-							node {
-								name {
-									full
-								}
-								image {
-									large
-								}
-								siteUrl
-							}
-						}
-					}
-					relations {
-						edges {
-							node {
-								id
-								siteUrl
-								title {
-									userPreferred
-								}
-								coverImage {
-									large
-									color
-								}
-								format
-								status
-							}
-						}
+					coverImage {
+						large
 					}
 				}
 			}
@@ -131,7 +102,7 @@ const Home: NextPage = () => {
 						genres={manga.genres}
 						status={manga.status}
 						link={manga.externalLinks}
-						image={manga.relations.edges}
+						image={manga.coverImage.large}
 					/>
 				))}
 			</div>

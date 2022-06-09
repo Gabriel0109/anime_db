@@ -5,4 +5,11 @@
     flex-direction: row;
     flex-wrap: wrap;
     width: 100%;
+
+    & > a {
+        width: 30%;
+        min-height: 550px;
+        margin: 1rem;
+        background: rgb(0,0,0,0.5);
+    }
 }

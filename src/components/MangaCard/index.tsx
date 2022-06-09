@@ -5,17 +5,18 @@ export function MangaCard(props: any) {
 	console.log(props.image);
 
 	const imgLoader = ({ src }) => {
-		return `${props.image[0].node.coverImage.large}`;
+		return `${props.image}`;
 	};
 
 	return (
 		<div className={styles.mangaCard} key={props.id}>
-			{props.image[0] ? (
+			{props.image ? (
 				<Image
 					loader={imgLoader}
-					src={props.image[0].node.coverImage.large}
+					src={props.image}
 					width="100"
 					height="500"
+					unoptimized={true}
 				/>
 			) : (
 				""

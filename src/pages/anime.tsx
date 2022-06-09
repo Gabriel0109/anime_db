@@ -1,11 +1,10 @@
 import { useQuery, gql } from "@apollo/client";
+import Link from "next/link";
 import { AnimeCard } from "../components/AnimeCard";
 import { BannerAnime } from "../components/BannerAnime";
 import styled from "../styles/anime.module.scss";
 
-// import mediaQuery from "../assets/graphql/media.graphql";
-
-const Home: NextPage = () => {
+export default function Anime() {
 	const QUERY = gql`
 		query ($page: Int, $perPage: Int, $search: String) {
 			Page(page: $page, perPage: $perPage) {
@@ -42,37 +41,8 @@ const Home: NextPage = () => {
 						url
 						site
 					}
-					characters(sort: [ROLE, ID], perPage: 12) {
-						edges {
-							id
-							role
-							node {
-								name {
-									full
-								}
-								image {
-									large
-								}
-								siteUrl
-							}
-						}
-					}
-					relations {
-						edges {
-							node {
-								id
-								siteUrl
-								title {
-									userPreferred
-								}
-								coverImage {
-									large
-									color
-								}
-								format
-								status
-							}
-						}
+					coverImage {
+						large
 					}
 				}
 			}
@@ -115,29 +85,37 @@ const Home: NextPage = () => {
 	}
 
 	const animes = data;
-	console.log("data", animes);
+	console.log(animes);
 
 	return (
 		<>
 			<BannerAnime></BannerAnime>
 			<div className={styled.RowAnime}>
 				{animes.Page.media.map((anime: any) => (
-					<AnimeCard
+					<Link
 						key={anime.id}
-						title={anime.title.english}
-						season={anime.season}
-						score={anime.averageScore}
-						popularity={anime.popularity}
-						episodes={anime.episodes}
-						genres={anime.genres}
-						status={anime.status}
-						link={anime.externalLinks}
-						image={anime.relations.edges}
-					/>
+						href={{
+							pathname: "/animeDetails",
+							query: { id: anime.id }, // the data
+						}}
+					>
+						<a href="/animeDetails">
+							<AnimeCard
+								key={anime.id}
+								title={anime.title.english}
+								season={anime.season}
+								score={anime.averageScore}
+								popularity={anime.popularity}
+								episodes={anime.episodes}
+								genres={anime.genres}
+								status={anime.status}
+								link={anime.externalLinks}
+								image={anime.coverImage.large}
+							/>
+						</a>
+					</Link>
 				))}
 			</div>
 		</>
 	);
-};
-
-export default Home;
+}
