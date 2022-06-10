@@ -20,6 +20,7 @@ export function AnimeCard(props: any) {
 			) : (
 				""
 			)}
+			
 			<h3>{props.title}</h3>
 		</div>
 	);

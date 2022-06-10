@@ -1,13 +1,21 @@
 .RowAnime {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: row;
-    flex-wrap: wrap;
-    margin-top: 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  flex-wrap: wrap;
+  margin-top: 2rem;
 
-    & > a {
-        margin: 1rem;
-        background: rgb(0,0,0,0.5);
-    }
+  &>a {
+    margin: 1rem;
+    background: rgb(0, 0, 0, 0.5);
+  }
+}
+
+.item {
+  height: 10rem;
+  background: #4dc7a0;
+  padding: 1rem;
+  color: white;
+  font-family: Arial, Helvetica, sans-serif;
 }

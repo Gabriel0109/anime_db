@@ -19,7 +19,7 @@ export function Header( ){
                         <a className={asPath == '/manga' ? styles.active : ''} >Mangás</a>
                     </Link>
                 </nav>
-                    <SignInButton />
+                    {/* <SignInButton /> */}
             </div>
         </header>
     )

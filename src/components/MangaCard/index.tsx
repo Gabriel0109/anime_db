@@ -14,7 +14,7 @@ export function MangaCard(props: any) {
 				<Image
 					loader={imgLoader}
 					src={props.image}
-					width="100"
+					width="100%"
 					height="500"
 					unoptimized={true}
 				/>

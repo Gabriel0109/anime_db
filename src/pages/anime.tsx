@@ -4,6 +4,20 @@ import { AnimeCard } from "../components/AnimeCard";
 import { BannerAnime } from "../components/BannerAnime";
 import styled from "../assets/styles/anime.module.scss";
 
+var $ = require("jquery");
+if (typeof window !== "undefined") {
+   window.$ = window.jQuery = require("jquery");
+}
+
+import 'owl.carousel/dist/assets/owl.carousel.css';
+import 'owl.carousel';
+
+import dynamic from "next/dynamic";
+
+const OwlCarousel = dynamic(() => import("react-owl-carousel"), {
+  ssr: false,
+});
+
 export default function Anime() {
 	const QUERY = gql`
 		query ($page: Int, $perPage: Int, $search: String) {
@@ -87,35 +101,73 @@ export default function Anime() {
 	const animes = data;
 	console.log(animes);
 
+	const Responsive = { 
+		0: {
+			items: 1.2,
+			margin: 5,
+		},
+		580: {
+			items: 2,
+			margin: 10,
+		},
+		768: {
+			items: 2.5,
+			margin: 10,
+		},
+		900: {
+			items: 3,
+			margin: 10,
+		},
+		1200: {
+			items: 3.5,
+			margin: 20,
+		},
+		1400: {
+			items: 4,
+			margin: 20,
+		}
+	}
+
 	return (
 		<>
 			<BannerAnime></BannerAnime>
-			<div className={styled.RowAnime + " row"}>
+			<OwlCarousel
+				loop
+				nav={false}
+				responsive={Responsive}
+				autoplay={true}
+				dots={false}
+				autoplayTimeout={2000}
+				autoplaySpeed={2000}
+				autoplayHoverPause={true}
+			>
 				{animes.Page.media.map((anime: any) => (
-					<Link
-						key={anime.id}
-						href={{
-							pathname: "/AnimeDetails",
-							query: { id: anime.id }, // the data
-						}}
-					>
-						<a className=" col-12 col-lg-3">
-							<AnimeCard
-								key={"anime" + anime.id}
-								title={anime.title.english}
-								season={anime.season}
-								score={anime.averageScore}
-								popularity={anime.popularity}
-								episodes={anime.episodes}
-								genres={anime.genres}
-								status={anime.status}
-								link={anime.externalLinks}
-								image={anime.coverImage.large}
-							/>
-						</a>
-					</Link>
+					<div key={"carousel_id_" + anime.id} className="item">
+						<Link
+							key={anime.id}
+							href={{
+								pathname: "/AnimeDetails",
+								query: { id: anime.id }, // the data
+							}}
+						>
+							<a>
+								<AnimeCard
+									key={"anime" + anime.id}
+									title={anime.title.english}
+									season={anime.season}
+									score={anime.averageScore}
+									popularity={anime.popularity}
+									episodes={anime.episodes}
+									genres={anime.genres}
+									status={anime.status}
+									link={anime.externalLinks}
+									image={anime.coverImage.large}
+								/>
+							</a>
+						</Link>
+					</div>
 				))}
-			</div>
+			</OwlCarousel>
 		</>
 	);
 }
