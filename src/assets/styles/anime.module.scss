@@ -1,21 +1,16 @@
-.RowAnime {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: row;
-  flex-wrap: wrap;
-  margin-top: 2rem;
+.AnimeCarousel {
+	border-block: 2px solid #c6c6c6;
+}
 
-  &>a {
-    margin: 1rem;
-    background: rgb(0, 0, 0, 0.5);
-  }
+.AnimeCarouselTitle {
+	padding: 1rem;
+	font-weight: bold;
 }
 
 .item {
-  height: 10rem;
-  background: #4dc7a0;
-  padding: 1rem;
-  color: white;
-  font-family: Arial, Helvetica, sans-serif;
+	height: 10rem;
+	background: #4dc7a0;
+	padding: 1rem;
+	color: white;
+	font-family: Arial, Helvetica, sans-serif;
 }

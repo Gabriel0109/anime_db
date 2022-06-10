@@ -6,16 +6,16 @@ import styled from "../assets/styles/anime.module.scss";
 
 var $ = require("jquery");
 if (typeof window !== "undefined") {
-   window.$ = window.jQuery = require("jquery");
+	window.$ = window.jQuery = require("jquery");
 }
 
-import 'owl.carousel/dist/assets/owl.carousel.css';
-import 'owl.carousel';
+import "owl.carousel/dist/assets/owl.carousel.css";
+import "owl.carousel";
 
 import dynamic from "next/dynamic";
 
 const OwlCarousel = dynamic(() => import("react-owl-carousel"), {
-  ssr: false,
+	ssr: false,
 });
 
 export default function Anime() {
@@ -101,73 +101,73 @@ export default function Anime() {
 	const animes = data;
 	console.log(animes);
 
-	const Responsive = { 
+	const Responsive = {
 		0: {
 			items: 1.2,
-			margin: 5,
 		},
 		580: {
 			items: 2,
-			margin: 10,
 		},
 		768: {
 			items: 2.5,
-			margin: 10,
 		},
 		900: {
 			items: 3,
-			margin: 10,
 		},
 		1200: {
 			items: 3.5,
-			margin: 20,
 		},
 		1400: {
 			items: 4,
-			margin: 20,
-		}
-	}
+		},
+	};
 
 	return (
 		<>
 			<BannerAnime></BannerAnime>
-			<OwlCarousel
-				loop
-				nav={false}
-				responsive={Responsive}
-				autoplay={true}
-				dots={false}
-				autoplayTimeout={2000}
-				autoplaySpeed={2000}
-				autoplayHoverPause={true}
-			>
-				{animes.Page.media.map((anime: any) => (
-					<div key={"carousel_id_" + anime.id} className="item">
-						<Link
-							key={anime.id}
-							href={{
-								pathname: "/AnimeDetails",
-								query: { id: anime.id }, // the data
-							}}
-						>
-							<a>
-								<AnimeCard
-									key={"anime" + anime.id}
-									title={anime.title.english}
-									season={anime.season}
-									score={anime.averageScore}
-									popularity={anime.popularity}
-									episodes={anime.episodes}
-									genres={anime.genres}
-									status={anime.status}
-									link={anime.externalLinks}
-									image={anime.coverImage.large}
-								/>
-							</a>
-						</Link>
-					</div>
-				))}
-			</OwlCarousel>
+
+			<div className={styled.AnimeCarousel}>
+				<h2 className={styled.AnimeCarouselTitle}>
+					Animes Favoritos da Galera
+				</h2>
+				<OwlCarousel
+					loop
+					nav={false}
+					responsive={Responsive}
+					autoplay={true}
+					dots={false}
+					autoplayTimeout={5000}
+					autoplaySpeed={2000}
+					autoplayHoverPause={true}
+				>
+					{animes.Page.media.map((anime: any) => (
+						<div key={"carousel_id_" + anime.id} className="item">
+							<Link
+								key={anime.id}
+								href={{
+									pathname: "/AnimeDetails",
+									query: { id: anime.id }, // the data
+								}}
+							>
+								<a>
+									<AnimeCard
+										key={"anime" + anime.id}
+										title={anime.title.english}
+										season={anime.season}
+										score={anime.averageScore}
+										popularity={anime.popularity}
+										episodes={anime.episodes}
+										genres={anime.genres}
+										status={anime.status}
+										link={anime.externalLinks}
+										image={anime.coverImage.large}
+									/>
+								</a>
+							</Link>
+						</div>
+					))}
+				</OwlCarousel>
+			</div>
 		</>
 	);
 }
