@@ -4,6 +4,7 @@ import { MangaCard } from "../components/MangaCard";
 import { BannerManga } from "../components/BannerManga";
 
 import styled from "../assets/styles/manga.module.scss";
+import Link from "next/link";
 
 const Home: NextPage = () => {
 	const QUERY = gql`
@@ -90,20 +91,30 @@ const Home: NextPage = () => {
 	return (
 		<>
 			<BannerManga></BannerManga>
-			<div className={styled.RowManga}>
+			<div className="row">
 				{mangas.Page.media.map((manga: any) => (
-					<MangaCard
+					<Link
 						key={manga.id}
-						title={manga.title.english}
-						season={manga.season}
-						score={manga.averageScore}
-						popularity={manga.popularity}
-						episodes={manga.episodes}
-						genres={manga.genres}
-						status={manga.status}
-						link={manga.externalLinks}
-						image={manga.coverImage.large}
-					/>
+						href={{
+							pathname: "/MangaDetails",
+							query: { id: manga.id }, // the data
+						}}
+					>
+						<a className="col-12 col-lg-3">
+							<MangaCard
+								key={manga.id}
+								title={manga.title.english}
+								season={manga.season}
+								score={manga.averageScore}
+								popularity={manga.popularity}
+								episodes={manga.episodes}
+								genres={manga.genres}
+								status={manga.status}
+								link={manga.externalLinks}
+								image={manga.coverImage.large}
+							/>
+						</a>
+					</Link>
 				))}
 			</div>
 		</>

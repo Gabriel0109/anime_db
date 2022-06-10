@@ -1,0 +1,27 @@
+.MangaDetailsContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    flex-wrap: wrap;
+    margin-inline: 2rem;
+    padding-top: 10rem;
+}
+
+.MangaImgDesc {
+    padding-block: 1rem;
+    border-bottom: 1px solid #c6c6c6;
+}
+
+.MangaImg { 
+    width: 100%;
+}
+
+.MangaDescription {
+
+}
+
+.MangaInfos {
+    width: 100%;
+    padding: 3rem 0rem;
+}

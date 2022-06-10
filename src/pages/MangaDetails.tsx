@@ -1,21 +1,21 @@
 import { useQuery, gql } from "@apollo/client";
 import { useRouter } from "next/router";
 
-import styled from "../assets/styles/animeDetails.module.scss";
+import styled from "../assets/styles/mangaDetails.module.scss";
 
-export default function AnimeDetails(props: any) {
+export default function MangaDetails(props: any) {
 	const { query } = useRouter();
 
 	const QUERY = gql`
 		{
-			Media(id: ${query.id}, type: ANIME) {
+			Media(id: ${query.id}, type: MANGA) {
 				id
 				title {
 					romaji
 					english
 					native
 					userPreferred
-				}s
+				}
 				description
 				hashtag
 				trailer {
@@ -23,7 +23,6 @@ export default function AnimeDetails(props: any) {
 					site
 					thumbnail
 				}
-				episodes
 				status
 				chapters
 				volumes
@@ -112,64 +111,60 @@ export default function AnimeDetails(props: any) {
 		return null;
 	}
 
-	const anime = data.Media;
-	console.log("data", anime);
+	const manga = data.Media;
+	console.log("manga", manga);
 
 	return (
-		<div className={styled.AnimeDetailsContainer}>
-			<div className={styled.AnimeImgDesc}>
+		<div className={styled.MangaDetailsContainer}>
+			<div className={styled.MangaImgDesc}>
 				<div className="row">
 					<div className="col-12 mb-4">
-						<h1>{anime.title.english}</h1>
+						<h1>{manga.title.english}</h1>
 					</div>
 					<div className="col-3">
 						<img
-							className={styled.AnimeImg}
-							src={anime.coverImage.large}
-							alt={anime.title.english}
+							className={styled.MangaImg}
+							src={manga.coverImage.large}
+							alt={manga.title.english}
 						/>
 					</div>
 					<div className="col-9">
-						<h5 className={styled.animeDescription}>
-							{anime.description}
+						<h5 className={styled.MangaDescription}>
+							{manga.description}
 						</h5>
 					</div>
 				</div>
 			</div>
-			<div className={styled.AnimeInfos}>
-				<h4>Episodes: {anime.episodes}</h4>
+			<div className={styled.MangaInfos}>
+				<h4>Episodes: {manga.episodes}</h4>
 
-				<p>Status: {anime.status}</p>
-				<p>Season: {anime.season}</p>
-				<p>SeasonYear: {anime.seasonYear}</p>
-				<p>Score: {anime.averageScore}/100</p>
+				<p>Status: {manga.status}</p>
+				<p>Season: {manga.season}</p>
+				<p>SeasonYear: {manga.seasonYear}</p>
+				<p>Score: {manga.averageScore}/100</p>
 				<h4>Studio:</h4>
 				<ul className="list-unstyled">
-					{anime.studios.edges.map((studio: {}, index: number) => {
-						if (studio.node.isAnimationStudio) {
-							return (
-								<li key={"studio" + index}>
-									<p>{studio.node.name}</p>
-								</li>
-							);
-						}
+					{manga.studios.edges.map((studio: {}, index: number) => {
+						<li key={"studio" + index}>
+							<p>{studio.node.name}</p>
+						</li>;
 					})}
 				</ul>
 				<h4>Genres:</h4>
 				<ul className="list-unstyled">
-					{anime.genres.map((genre: string, index: number) => (
+					{manga.genres.map((genre: string, index: number) => (
 						<li key={"genre" + index}>
 							<p>{genre}</p>
 						</li>
 					))}
 				</ul>
 				<p>
-					endDate: {anime.endDate.day}/{anime.endDate.month}/
-					{anime.endDate.year}
+					endDate: {manga.endDate.day}/{manga.endDate.month}/
+					{manga.endDate.year}
 				</p>
-				<h4>Assista:</h4>
+				<h4>Leia:</h4>
 				<ul className="list-unstyled">
-					{anime.externalLinks.map((link: {}, index: number) => (
+					{manga.externalLinks.map((link: {}, index: number) => (
 						<li key={"site" + index}>
 							<a href={link.url} target="_blank">
 								{link.site}
