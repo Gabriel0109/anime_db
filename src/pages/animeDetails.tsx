@@ -114,20 +114,69 @@ export default function AnimeDetails(props: any) {
 
 	const anime = data.Media;
 	console.log("data", anime);
-	console.log("type", typeof anime.description);
 
 	return (
 		<div className={styled.AnimeDetailsContainer}>
-			<div className="row animeImgDesc">
-				<div className="col-2">
-					<img
-						src={anime.coverImage.large}
-						alt={anime.title.english}
-					/>
+			<div className={styled.AnimeImgDesc}>
+				<div className="row">
+					<div className="col-12 mb-4">
+						<h1>{anime.title.english}</h1>
+					</div>
+					<div className="col-3">
+						<img
+							className={styled.AnimeImg}
+							src={anime.coverImage.large}
+							alt={anime.title.english}
+						/>
+					</div>
+					<div className="col-9">
+						<h5 className={styled.animeDescription}>
+							{anime.description}
+						</h5>
+					</div>
 				</div>
-				<div className="col-8">
-					<h5 className="animeDescription">{anime.description}</h5>
-				</div>
+			</div>
+			<div className={styled.AnimeInfos}>
+				<h4>Episodes: {anime.episodes}</h4>
+
+				<p>Status: {anime.status}</p>
+				<p>Season: {anime.season}</p>
+				<p>SeasonYear: {anime.seasonYear}</p>
+				<p>Score: {anime.averageScore}</p>
+				<h4>Studio:</h4>
+				<ul className="list-unstyled">
+					{anime.studios.edges.map((studio: {}) => {
+						if (studio.node.isAnimationStudio) {
+							return (
+								<li key={studio.node.name}>
+									<p>{studio.node.name}</p>
+								</li>
+							);
+						}
+					})}
+				</ul>
+				<h4>Genres:</h4>
+				<ul className="list-unstyled">
+					{anime.genres.map((genre: string) => (
+						<li key={genre}>
+							<p>{genre}</p>
+						</li>
+					))}
+				</ul>
+				<p>
+					endDate: {anime.endDate.day}/{anime.endDate.month}/
+					{anime.endDate.year}
+				</p>
+				<h4>Assista:</h4>
+				<ul className="list-unstyled">
+					{anime.externalLinks.map((link: {}) => (
+						<li key={link.site}>
+							<a href={link.url} target="_blank">
+								{link.site}
+							</a>
+						</li>
+					))}
+				</ul>
 			</div>
 		</div>
 	);

@@ -4,12 +4,24 @@
     align-items: center;
     flex-direction: row;
     flex-wrap: wrap;
-    width: 100%;
     margin-inline: 2rem;
     padding-top: 10rem;
+}
 
-    .animeImgDesc {
-        padding-block: 1rem;
-        border-bottom: 1px solid #c6c6c6;
-    }
+.AnimeImgDesc {
+    padding-block: 1rem;
+    border-bottom: 1px solid #c6c6c6;
+}
+
+.AnimeImg { 
+    width: 100%;
+}
+
+.AnimeDescription {
+
+}
+
+.AnimeInfos {
+    width: 100%;
+    padding: 3rem 0rem;
 }
