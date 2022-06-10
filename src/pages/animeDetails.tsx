@@ -142,13 +142,13 @@ export default function AnimeDetails(props: any) {
 				<p>Status: {anime.status}</p>
 				<p>Season: {anime.season}</p>
 				<p>SeasonYear: {anime.seasonYear}</p>
-				<p>Score: {anime.averageScore}</p>
+				<p>Score: {anime.averageScore}/100</p>
 				<h4>Studio:</h4>
 				<ul className="list-unstyled">
-					{anime.studios.edges.map((studio: {}) => {
+					{anime.studios.edges.map((studio: {}, index: number) => {
 						if (studio.node.isAnimationStudio) {
 							return (
-								<li key={studio.node.name}>
+								<li key={"studio" + index}>
 									<p>{studio.node.name}</p>
 								</li>
 							);
@@ -157,8 +157,8 @@ export default function AnimeDetails(props: any) {
 				</ul>
 				<h4>Genres:</h4>
 				<ul className="list-unstyled">
-					{anime.genres.map((genre: string) => (
-						<li key={genre}>
+					{anime.genres.map((genre: string, index: number) => (
+						<li key={"genre" + index}>
 							<p>{genre}</p>
 						</li>
 					))}
@@ -169,8 +169,8 @@ export default function AnimeDetails(props: any) {
 				</p>
 				<h4>Assista:</h4>
 				<ul className="list-unstyled">
-					{anime.externalLinks.map((link: {}) => (
-						<li key={link.site}>
+					{anime.externalLinks.map((link: {}, index: number) => (
+						<li key={"site" + index}>
 							<a href={link.url} target="_blank">
 								{link.site}
 							</a>

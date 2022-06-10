@@ -90,7 +90,7 @@ export default function Anime() {
 	return (
 		<>
 			<BannerAnime></BannerAnime>
-			<div className={styled.RowAnime}>
+			<div className={styled.RowAnime + " row"}>
 				{animes.Page.media.map((anime: any) => (
 					<Link
 						key={anime.id}
@@ -99,9 +99,9 @@ export default function Anime() {
 							query: { id: anime.id }, // the data
 						}}
 					>
-						<a href="/AnimeDetails">
+						<a className=" col-12 col-lg-3">
 							<AnimeCard
-								key={anime.id}
+								key={"anime" + anime.id}
 								title={anime.title.english}
 								season={anime.season}
 								score={anime.averageScore}
