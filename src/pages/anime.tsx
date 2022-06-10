@@ -2,7 +2,7 @@ import { useQuery, gql } from "@apollo/client";
 import Link from "next/link";
 import { AnimeCard } from "../components/AnimeCard";
 import { BannerAnime } from "../components/BannerAnime";
-import styled from "../styles/anime.module.scss";
+import styled from "../assets/styles/anime.module.scss";
 
 export default function Anime() {
 	const QUERY = gql`
@@ -95,11 +95,11 @@ export default function Anime() {
 					<Link
 						key={anime.id}
 						href={{
-							pathname: "/animeDetails",
+							pathname: "/AnimeDetails",
 							query: { id: anime.id }, // the data
 						}}
 					>
-						<a href="/animeDetails">
+						<a href="/AnimeDetails">
 							<AnimeCard
 								key={anime.id}
 								title={anime.title.english}

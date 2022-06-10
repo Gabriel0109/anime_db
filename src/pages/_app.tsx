@@ -1,10 +1,14 @@
 import { motion } from "framer-motion";
 import type { AppProps } from "next/app";
 import { Header } from "../components/Header";
-import "../assets/styles/globals.scss";
-
 import { ApolloProvider } from "@apollo/client";
 import client from "../utils/apollo-client";
+
+// add bootstrap css
+import "bootstrap/dist/css/bootstrap.css";
+
+// global css
+import "../assets/styles/globals.scss";
 
 function MyApp({ Component, pageProps }: AppProps) {
 	return (
@@ -36,4 +40,3 @@ function MyApp({ Component, pageProps }: AppProps) {
 }
 
 export default MyApp;
-

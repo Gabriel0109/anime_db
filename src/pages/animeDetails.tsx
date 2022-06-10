@@ -1,14 +1,29 @@
 import { useQuery, gql } from "@apollo/client";
 import { useRouter } from "next/router";
 
-export default function animeDetails(props: any) {
+import styled from "../assets/styles/animeDetails.module.scss";
+
+export default function AnimeDetails(props: any) {
 	const { query } = useRouter();
-	console.log("id", query.id);
 
 	const QUERY = gql`
 		{
-			Media(id: 11061, type: ANIME) {
+			Media(id: ${query.id}, type: ANIME) {
 				id
+				title {
+					romaji
+					english
+					native
+					userPreferred
+				}
+				description
+				hashtag
+				trailer {
+					id
+					site
+					thumbnail
+				}
+				episodes
 				status
 				chapters
 				volumes
@@ -16,6 +31,7 @@ export default function animeDetails(props: any) {
 				genres
 				averageScore
 				popularity
+				format
 				studios {
 					edges {
 						node {
@@ -27,6 +43,35 @@ export default function animeDetails(props: any) {
 				}
 				coverImage {
 					large
+				}
+				season
+				seasonYear
+				endDate {
+					year
+					month
+					day
+				}
+				countryOfOrigin
+				isLicensed
+				source
+				externalLinks {
+					url
+					site
+				}
+				characters(sort: [ROLE, ID]) {
+					edges {
+						id
+						role
+						node {
+							name {
+								full
+							}
+							image {
+								large
+							}
+							siteUrl
+						}
+					}
 				}
 			}
 		}
@@ -67,12 +112,23 @@ export default function animeDetails(props: any) {
 		return null;
 	}
 
-	const anime = data;
+	const anime = data.Media;
 	console.log("data", anime);
+	console.log("type", typeof anime.description);
 
 	return (
 		<div className={styled.AnimeDetailsContainer}>
-
+			<div className="row animeImgDesc">
+				<div className="col-2">
+					<img
+						src={anime.coverImage.large}
+						alt={anime.title.english}
+					/>
+				</div>
+				<div className="col-8">
+					<h5 className="animeDescription">{anime.description}</h5>
+				</div>
+			</div>
 		</div>
 	);
 }

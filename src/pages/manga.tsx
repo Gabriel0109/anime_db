@@ -3,7 +3,7 @@ import { useQuery, gql } from "@apollo/client";
 import { MangaCard } from "../components/MangaCard";
 import { BannerManga } from "../components/BannerManga";
 
-import styled from "../styles/manga.module.scss";
+import styled from "../assets/styles/manga.module.scss";
 
 const Home: NextPage = () => {
 	const QUERY = gql`

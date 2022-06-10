@@ -27,8 +27,9 @@
 }
 
 body{
-  background: var(--bg-color);
-  color: var(--text-color);
+  background: var(--bg-color) !important;
+  color: var(--text-color) !important;
+  overflow-x: hidden;
 }
 
 body, input, select, textarea, button {
@@ -41,5 +42,5 @@ button {
 
 a {
   color: inherit;
-  text-decoration: none;
+  text-decoration: none !important;
 }
