@@ -1,5 +1,5 @@
 import Image from "next/image";
-import styles from "./styles.module.scss";
+import styled from "./styles.module.scss";
 
 export function AnimeCard(props: any) {
 	const imgLoader = () => {
@@ -7,20 +7,20 @@ export function AnimeCard(props: any) {
 	};
 
 	return (
-		<div className={styles.animeCard} key={props.id}>
+		<div className={styled.animeCard} key={props.id}>
 			{props.image ? (
 				<Image
 					loader={imgLoader}
 					src={props.image}
 					alt={props.title}
 					width="100%"
-					height="500"
+					height="400"
 					unoptimized={true}
 				/>
 			) : (
 				""
 			)}
-			
+
 			<h3>{props.title}</h3>
 		</div>
 	);

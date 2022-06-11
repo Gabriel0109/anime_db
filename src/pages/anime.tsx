@@ -153,27 +153,21 @@ export default function Anime() {
 	const Responsive = {
 		0: {
 			items: 1.2,
-			margin: 5,
 		},
 		580: {
 			items: 2,
-			margin: 10,
 		},
 		768: {
 			items: 2.5,
-			margin: 10,
 		},
 		900: {
 			items: 3,
-			margin: 10,
 		},
 		1200: {
 			items: 3.5,
-			margin: 20,
 		},
 		1400: {
 			items: 4,
-			margin: 20,
 		},
 	};
 
