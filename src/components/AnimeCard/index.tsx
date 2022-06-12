@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import styled from "./styles.module.scss";
 
 export function AnimeCard(props: any) {
@@ -20,8 +21,18 @@ export function AnimeCard(props: any) {
 			) : (
 				""
 			)}
-
-			<h3>{props.title}</h3>
+			<div className="context">
+				<h2>{props.title}</h2>
+				<Link
+					key={props.id}
+					href={{
+						pathname: "/AnimeDetails",
+						query: { id: props.id }, // the data
+					}}
+				>
+					<a className="button">See More</a>
+				</Link>
+			</div>
 		</div>
 	);
 }

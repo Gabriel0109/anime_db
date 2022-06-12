@@ -1,22 +1,76 @@
 .animeCard {
+    height: 500px;
     width: 100%;
-    color: #FFF;
+    background: #000;
+    overflow: hidden;
+    position: relative;
     display: flex;
-    flex-direction: column;
-    padding: 1rem;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all .25s ease;
 
-
-    h3 {
-        position: absolute;
-        width: 91%;
-
-        background: rgb(0,0,0);
-        background: linear-gradient(0deg, rgba(0,0,0,0) 0%, rgba(0,0,0,.3) 20%, rgba(0,0,0,.8) 70%, rgba(0,0,0,1) 100%); 
-
-        padding: 1rem 0 2rem 0;
-        
-        text-align: center;
-        font-size: larger;
-        font-weight: 400;
+    &:hover {
+        transform: scale(.9);
     }
+
+    &:hover:after {
+        height: 280px;
+    }
+
+    &:hover .context p {
+        margin-bottom: 0px;
+        opacity: 1;
+    }
+
+    &:hover span {
+        transform: scale(1.25);
+    }
+
+    &:after {
+        width: 100%;
+        content: '';
+        left: 0px;
+        bottom: 0px;
+        height: 150px;
+        position: absolute;
+        background: linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,1) 100%);
+        z-index: 20;
+        transition: all .25s ease;
+    }
+    
+    span {
+        height: 100%;
+        z-index: 10;
+        position: unset !important;
+        transition: all .25s ease;
+    }
+
+    .context {
+        z-index: 30;
+        position: absolute;
+        bottom: 0px;
+        color: #fff;
+        padding: 20px;
+        padding-bottom: 30px;
+    }
+
+    .context .button {
+        padding: 7px 17px;
+        border-radius: 12px;
+        background: transparent;
+        border: 2px solid #fff;
+        color: #fff;
+        margin-top: 10px;
+        margin-left: auto;
+        cursor: pointer;
+        transition: all .25s ease;
+        outline: none;
+
+        &:hover {
+            background: #fff;
+            color: #000;
+        }
+    }
+    
 }

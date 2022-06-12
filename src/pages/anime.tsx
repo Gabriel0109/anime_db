@@ -62,53 +62,52 @@ export default function Anime() {
 			}
 		}
 	`;
-	
-	const QUERY_NEWS = gql`
-		query ($page: Int, $perPage: Int, $search: String) {
-			Page(page: $page, perPage: $perPage) {
-				pageInfo {
-					total
-					perPage
-				}
-				media(search: $search, type: ANIME, sort: START_DATE) {
-					id
-					title {
-						romaji
-						english
-						native
-						userPreferred
-					}
-					genres
-					episodes
-					format
-					status
-					isAdult
-					season
-					seasonYear
-					endDate {
-						year
-						month
-						day
-					}
-					countryOfOrigin
-					isLicensed
-					source
-					popularity
-					averageScore
-					externalLinks {
-						url
-						site
-					}
-					coverImage {
-						large
-					}
-				}
-			}
-		}
-	`;
+
+	// const QUERY_NEWS = gql`
+	// 	query ($page: Int, $perPage: Int, $search: String) {
+	// 		Page(page: $page, perPage: $perPage) {
+	// 			pageInfo {
+	// 				total
+	// 				perPage
+	// 			}
+	// 			media(search: $search, type: ANIME, sort: START_DATE) {
+	// 				id
+	// 				title {
+	// 					romaji
+	// 					english
+	// 					native
+	// 					userPreferred
+	// 				}
+	// 				genres
+	// 				episodes
+	// 				format
+	// 				status
+	// 				isAdult
+	// 				season
+	// 				seasonYear
+	// 				endDate {
+	// 					year
+	// 					month
+	// 					day
+	// 				}
+	// 				countryOfOrigin
+	// 				isLicensed
+	// 				source
+	// 				popularity
+	// 				averageScore
+	// 				externalLinks {
+	// 					url
+	// 					site
+	// 				}
+	// 				coverImage {
+	// 					large
+	// 				}
+	// 			}
+	// 		}
+	// 	}
+	// `;
 
 	var { data, loading, error } = useQuery(QUERY_FAVOURITES);
-
 
 	if (loading) {
 		return (
@@ -145,10 +144,9 @@ export default function Anime() {
 
 	const animes_fav = data;
 
-	var { data, loading, error } = useQuery(QUERY_NEWS);
+	// var { data, loading, error } = useQuery(QUERY_NEWS);
 
-	const animes_news = data;
-
+	// const animes_news = data;
 
 	const Responsive = {
 		0: {
@@ -180,38 +178,29 @@ export default function Anime() {
 				responsive={Responsive}
 				autoplay={true}
 				dots={false}
-				autoplayTimeout={2000}
+				autoplayTimeout={10000}
 				autoplaySpeed={2000}
 				autoplayHoverPause={true}
 			>
 				{animes_fav.Page.media.map((anime: any) => (
 					<div key={"carousel_id_" + anime.id} className="item">
-						<Link
-							key={anime.id}
-							href={{
-								pathname: "/AnimeDetails",
-								query: { id: anime.id }, // the data
-							}}
-						>
-							<a>
-								<AnimeCard
-									key={"anime" + anime.id}
-									title={anime.title.english}
-									season={anime.season}
-									score={anime.averageScore}
-									popularity={anime.popularity}
-									episodes={anime.episodes}
-									genres={anime.genres}
-									status={anime.status}
-									link={anime.externalLinks}
-									image={anime.coverImage.large}
-								/>
-							</a>
-						</Link>
+						<AnimeCard
+							key={"anime" + anime.id}
+							id={anime.id}
+							title={anime.title.english}
+							season={anime.season}
+							score={anime.averageScore}
+							popularity={anime.popularity}
+							episodes={anime.episodes}
+							genres={anime.genres}
+							status={anime.status}
+							link={anime.externalLinks}
+							image={anime.coverImage.large}
+						/>
 					</div>
 				))}
 			</OwlCarousel>
-			<OwlCarousel
+			{/* <OwlCarousel
 				loop
 				nav={false}
 				responsive={Responsive}
@@ -223,31 +212,22 @@ export default function Anime() {
 			>
 				{animes_news.Page.media.map((anime: any) => (
 					<div key={"carousel_id_" + anime.id} className="item">
-						<Link
-							key={anime.id}
-							href={{
-								pathname: "/AnimeDetails",
-								query: { id: anime.id }, // the data
-							}}
-						>
-							<a>
-								<AnimeCard
-									key={"anime" + anime.id}
-									title={anime.title.english}
-									season={anime.season}
-									score={anime.averageScore}
-									popularity={anime.popularity}
-									episodes={anime.episodes}
-									genres={anime.genres}
-									status={anime.status}
-									link={anime.externalLinks}
-									image={anime.coverImage.large}
-								/>
-							</a>
-						</Link>
+						<AnimeCard
+							key={"anime" + anime.id}
+							id={anime.id}
+							title={anime.title.english}
+							season={anime.season}
+							score={anime.averageScore}
+							popularity={anime.popularity}
+							episodes={anime.episodes}
+							genres={anime.genres}
+							status={anime.status}
+							link={anime.externalLinks}
+							image={anime.coverImage.large}
+						/>
 					</div>
 				))}
-			</OwlCarousel>
+			</OwlCarousel> */}
 		</>
 	);
 }
