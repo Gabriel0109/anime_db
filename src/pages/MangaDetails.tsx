@@ -3,7 +3,7 @@ import { useRouter } from "next/router";
 
 import styled from "../assets/styles/mangaDetails.module.scss";
 
-export default function MangaDetails(props: any) {
+export default function MangaDetails() {
 	const { query } = useRouter();
 
 	const QUERY = gql`

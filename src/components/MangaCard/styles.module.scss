@@ -1,26 +1,81 @@
 .mangaCard {
-    background: rgb(0,0,0,0.5);
-    color: #FFF;
+    height: 500px;
+    width: 100%;
+    background: #000;
+    overflow: hidden;
+    position: relative;
     display: flex;
-    flex-direction: column;
-    padding: 1rem;
-    min-height: 550px;
-    margin: 1rem;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all .25s ease;
 
-    h3 {
+    &:hover {
+        border-radius: 1rem;
+        transform: scale(.9);
+    }
+
+    &:hover:after {
+        height: 280px;
+    }
+
+    &:hover > span {
+        // transform: scale(1.25);
+    }
+
+    &:after {
+        width: 100%;
+        content: '';
+        left: 0px;
+        bottom: 0px;
+        height: 150px;
+        position: absolute;
+        background: linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,1) 100%);
+        z-index: 20;
+        transition: all 1s ease;
+    }
+    
+    span {
+        width: 100% !important;
+        height: 100%;
+        z-index: 10;
+        position: unset !important;
+        transition: all 1s ease;
+    }
+
+    &:hover > div > a {
+        display: block;
+    }
+
+    & > div {
+        z-index: 50;
+        position: absolute;
+        bottom: 0px;
+        color: #fff;
+        padding: 20px;
+        padding-bottom: 30px;
+        width: 100%;
+    }
+
+    & > div > a {
+        display: none;
         text-align: center;
-        margin-block: 1rem;
-        font-size: larger;
-        font-weight: 400;
-    }
+        padding: 7px 17px;
+        border-radius: 12px;
+        background: transparent;
+        border: 2px solid #fff;
+        color: #fff;
+        margin-top: 1rem;
+        margin-left: auto;
+        cursor: pointer;
+        transition: all .7s ease;
+        outline: none;
 
-    h4 {
-        margin-bottom: 1rem;
-        font-size: larger;
-    }
 
-    p {
-        margin-block: .5rem;
+        &:hover {
+            background: #fff;
+            color: #000;
+        }
     }
     
 }

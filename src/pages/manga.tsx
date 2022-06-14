@@ -6,7 +6,42 @@ import { BannerManga } from "../components/BannerManga";
 import styled from "../assets/styles/manga.module.scss";
 import Link from "next/link";
 
+var $ = require("jquery");
+if (typeof window !== "undefined") {
+	window.$ = window.jQuery = require("jquery");
+}
+
+import "owl.carousel/dist/assets/owl.carousel.css";
+import "owl.carousel";
+
+import dynamic from "next/dynamic";
+
+const OwlCarousel = dynamic(() => import("react-owl-carousel"), {
+	ssr: false,
+});
+
 const Home: NextPage = () => {
+	const Responsive = {
+		0: {
+			items: 1.2,
+		},
+		580: {
+			items: 2,
+		},
+		768: {
+			items: 2.5,
+		},
+		900: {
+			items: 3,
+		},
+		1200: {
+			items: 3.5,
+		},
+		1400: {
+			items: 4,
+		},
+	};
+
 	const QUERY = gql`
 		query ($page: Int, $perPage: Int, $search: String) {
 			Page(page: $page, perPage: $perPage) {
@@ -91,32 +126,27 @@ const Home: NextPage = () => {
 	return (
 		<>
 			<BannerManga></BannerManga>
-			<div className="row">
+			<OwlCarousel
+				loop
+				nav={false}
+				responsive={Responsive}
+				autoplay={true}
+				dots={false}
+				autoplayTimeout={3000}
+				autoplaySpeed={2000}
+				autoplayHoverPause={true}
+			>
 				{mangas.Page.media.map((manga: any) => (
-					<Link
-						key={manga.id}
-						href={{
-							pathname: "/MangaDetails",
-							query: { id: manga.id }, // the data
-						}}
-					>
-						<a className="col-12 col-lg-3">
-							<MangaCard
-								key={manga.id}
-								title={manga.title.english}
-								season={manga.season}
-								score={manga.averageScore}
-								popularity={manga.popularity}
-								episodes={manga.episodes}
-								genres={manga.genres}
-								status={manga.status}
-								link={manga.externalLinks}
-								image={manga.coverImage.large}
-							/>
-						</a>
-					</Link>
+					<div key={"carousel_id_" + manga.id} className="item">
+						<MangaCard
+							id={manga.id}
+							key={manga.id}
+							title={manga.title.english}
+							image={manga.coverImage.large}
+						/>
+					</div>
 				))}
-			</div>
+			</OwlCarousel>
 		</>
 	);
 };

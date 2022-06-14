@@ -32,7 +32,7 @@
         position: absolute;
         background: linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,1) 100%);
         z-index: 20;
-        transition: all .25s ease;
+        transition: all 1s ease;
     }
     
     span {
@@ -40,10 +40,11 @@
         height: 100%;
         z-index: 10;
         position: unset !important;
-        transition: all .25s ease;
+        transition: all 1s ease;
     }
+
     &:hover > div > a {
-        opacity: 1;
+        display: block;
     }
 
     & > div {
@@ -53,10 +54,12 @@
         color: #fff;
         padding: 20px;
         padding-bottom: 30px;
+        width: 100%;
     }
 
     & > div > a {
-        opacity: 0;
+        display: none;
+        text-align: center;
         padding: 7px 17px;
         border-radius: 12px;
         background: transparent;
@@ -65,8 +68,9 @@
         margin-top: 1rem;
         margin-left: auto;
         cursor: pointer;
-        transition: all .25s ease;
+        transition: all .7s ease;
         outline: none;
+
 
         &:hover {
             background: #fff;

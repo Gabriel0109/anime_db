@@ -64,47 +64,47 @@ export default function Anime() {
 	`;
 
 	// const QUERY_NEWS = gql`
-	// 	query ($page: Int, $perPage: Int, $search: String) {
-	// 		Page(page: $page, perPage: $perPage) {
-	// 			pageInfo {
-	// 				total
-	// 				perPage
-	// 			}
-	// 			media(search: $search, type: ANIME, sort: START_DATE) {
-	// 				id
-	// 				title {
-	// 					romaji
-	// 					english
-	// 					native
-	// 					userPreferred
-	// 				}
-	// 				genres
-	// 				episodes
-	// 				format
-	// 				status
-	// 				isAdult
-	// 				season
-	// 				seasonYear
-	// 				endDate {
-	// 					year
-	// 					month
-	// 					day
-	// 				}
-	// 				countryOfOrigin
-	// 				isLicensed
-	// 				source
-	// 				popularity
-	// 				averageScore
-	// 				externalLinks {
-	// 					url
-	// 					site
-	// 				}
-	// 				coverImage {
-	// 					large
-	// 				}
-	// 			}
-	// 		}
-	// 	}
+		// query ($page: Int, $perPage: Int, $search: String) {
+		// 	Page(page: $page, perPage: $perPage) {
+		// 		pageInfo {
+		// 			total
+		// 			perPage
+		// 		}
+		// 		media(search: $search, type: ANIME, sort: START_DATE) {
+		// 			id
+		// 			title {
+		// 				romaji
+		// 				english
+		// 				native
+		// 				userPreferred
+		// 			}
+		// 			genres
+		// 			episodes
+		// 			format
+		// 			status
+		// 			isAdult
+		// 			season
+		// 			seasonYear
+		// 			endDate {
+		// 				year
+		// 				month
+		// 				day
+		// 			}
+		// 			countryOfOrigin
+		// 			isLicensed
+		// 			source
+		// 			popularity
+		// 			averageScore
+		// 			externalLinks {
+		// 				url
+		// 				site
+		// 			}
+		// 			coverImage {
+		// 				large
+		// 			}
+		// 		}
+		// 	}
+		// }
 	// `;
 
 	var { data, loading, error } = useQuery(QUERY_FAVOURITES);
@@ -178,7 +178,7 @@ export default function Anime() {
 				responsive={Responsive}
 				autoplay={true}
 				dots={false}
-				autoplayTimeout={10000}
+				autoplayTimeout={3000}
 				autoplaySpeed={2000}
 				autoplayHoverPause={true}
 			>
