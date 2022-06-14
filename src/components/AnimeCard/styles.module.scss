@@ -11,6 +11,7 @@
     transition: all .25s ease;
 
     &:hover {
+        border-radius: 1rem;
         transform: scale(.9);
     }
 
@@ -18,8 +19,8 @@
         height: 280px;
     }
 
-    &:hover span {
-        transform: scale(1.25);
+    &:hover > span {
+        // transform: scale(1.25);
     }
 
     &:after {
@@ -35,14 +36,15 @@
     }
     
     span {
+        width: 100% !important;
         height: 100%;
         z-index: 10;
         position: unset !important;
         transition: all .25s ease;
     }
 
-    .context {
-        z-index: 30;
+    & > div {
+        z-index: 50;
         position: absolute;
         bottom: 0px;
         color: #fff;
@@ -50,13 +52,13 @@
         padding-bottom: 30px;
     }
 
-    .context .button {
+    & > div > a{
         padding: 7px 17px;
         border-radius: 12px;
         background: transparent;
         border: 2px solid #fff;
         color: #fff;
-        margin-top: 10px;
+        margin-top: 1rem;
         margin-left: auto;
         cursor: pointer;
         transition: all .25s ease;

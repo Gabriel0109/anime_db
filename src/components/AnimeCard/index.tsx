@@ -21,7 +21,7 @@ export function AnimeCard(props: any) {
 			) : (
 				""
 			)}
-			<div className="context">
+			<div className="context-sla">
 				<h2>{props.title}</h2>
 				<Link
 					key={props.id}
