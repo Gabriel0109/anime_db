@@ -30,7 +30,7 @@ export function AnimeCard(props: any) {
 						query: { id: props.id }, // the data
 					}}
 				>
-					<a className="button">See More</a>
+					<a>See More</a>
 				</Link>
 			</div>
 		</div>

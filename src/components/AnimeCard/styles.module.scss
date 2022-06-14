@@ -42,6 +42,9 @@
         position: unset !important;
         transition: all .25s ease;
     }
+    &:hover > div > a {
+        opacity: 1;
+    }
 
     & > div {
         z-index: 50;
@@ -52,7 +55,8 @@
         padding-bottom: 30px;
     }
 
-    & > div > a{
+    & > div > a {
+        opacity: 0;
         padding: 7px 17px;
         border-radius: 12px;
         background: transparent;

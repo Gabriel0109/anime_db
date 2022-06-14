@@ -15,7 +15,7 @@ export default function AnimeDetails(props: any) {
 					english
 					native
 					userPreferred
-				}s
+				}
 				description
 				hashtag
 				trailer {
@@ -169,7 +169,7 @@ export default function AnimeDetails(props: any) {
 				</p>
 				<h4>Assista:</h4>
 				<ul className="list-unstyled">
-					{anime.externalLinks.map((link: {}, index: number) => (
+					{anime.externalLinks.map((link: any, index: number) => (
 						<li key={"site" + index}>
 							<a href={link.url} target="_blank">
 								{link.site}
