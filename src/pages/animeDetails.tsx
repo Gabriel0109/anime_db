@@ -130,9 +130,7 @@ export default function AnimeDetails(props: any) {
 						/>
 					</div>
 					<div className="col-9">
-						<h5 className={styled.animeDescription}>
-							{anime.description}
-						</h5>
+						<h5 dangerouslySetInnerHTML={{__html: anime.description}} className={styled.animeDescription}></h5>
 					</div>
 				</div>
 			</div>

@@ -129,9 +129,7 @@ export default function MangaDetails() {
 						/>
 					</div>
 					<div className="col-9">
-						<h5 className={styled.MangaDescription}>
-							{manga.description}
-						</h5>
+						<h5 dangerouslySetInnerHTML={{__html: manga.description}} className={styled.MangaDescription}></h5>
 					</div>
 				</div>
 			</div>
