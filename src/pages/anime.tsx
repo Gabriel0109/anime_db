@@ -4,6 +4,8 @@ import { AnimeCard } from "../components/AnimeCard";
 import { BannerAnime } from "../components/BannerAnime";
 import styled from "../assets/styles/anime.module.scss";
 
+import { HOME_DATA_QUERY } from "../services/queries/anime"
+
 var $ = require("jquery");
 if (typeof window !== "undefined") {
 	window.$ = window.jQuery = require("jquery");
@@ -19,95 +21,51 @@ const OwlCarousel = dynamic(() => import("react-owl-carousel"), {
 });
 
 export default function Anime() {
-	const QUERY_FAVOURITES = gql`
-		query ($page: Int, $perPage: Int, $search: String) {
-			Page(page: $page, perPage: $perPage) {
-				pageInfo {
-					total
-					perPage
-				}
-				media(search: $search, type: ANIME, sort: FAVOURITES_DESC) {
-					id
-					title {
-						romaji
-						english
-						native
-						userPreferred
-					}
-					genres
-					episodes
-					format
-					status
-					isAdult
-					season
-					seasonYear
-					endDate {
-						year
-						month
-						day
-					}
-					countryOfOrigin
-					isLicensed
-					source
-					popularity
-					averageScore
-					externalLinks {
-						url
-						site
-					}
-					coverImage {
-						large
-					}
-				}
-			}
-		}
-	`;
-
-	// const QUERY_NEWS = gql`
-		// query ($page: Int, $perPage: Int, $search: String) {
-		// 	Page(page: $page, perPage: $perPage) {
-		// 		pageInfo {
-		// 			total
-		// 			perPage
-		// 		}
-		// 		media(search: $search, type: ANIME, sort: START_DATE) {
-		// 			id
-		// 			title {
-		// 				romaji
-		// 				english
-		// 				native
-		// 				userPreferred
-		// 			}
-		// 			genres
-		// 			episodes
-		// 			format
-		// 			status
-		// 			isAdult
-		// 			season
-		// 			seasonYear
-		// 			endDate {
-		// 				year
-		// 				month
-		// 				day
-		// 			}
-		// 			countryOfOrigin
-		// 			isLicensed
-		// 			source
-		// 			popularity
-		// 			averageScore
-		// 			externalLinks {
-		// 				url
-		// 				site
-		// 			}
-		// 			coverImage {
-		// 				large
-		// 			}
-		// 		}
-		// 	}
-		// }
+	// const QUERY_FAVOURITES = gql`
+	// 	query ($page: Int, $perPage: Int, $search: String) {
+	// 		Page(page: $page, perPage: $perPage) {
+	// 			pageInfo {
+	// 				total
+	// 				perPage
+	// 			}
+	// 			media(search: $search, type: ANIME, sort: FAVOURITES_DESC) {
+	// 				id
+	// 				title {
+	// 					romaji
+	// 					english
+	// 					native
+	// 					userPreferred
+	// 				}
+	// 				genres
+	// 				episodes
+	// 				format
+	// 				status
+	// 				isAdult
+	// 				season
+	// 				seasonYear
+	// 				endDate {
+	// 					year
+	// 					month
+	// 					day
+	// 				}
+	// 				countryOfOrigin
+	// 				isLicensed
+	// 				source
+	// 				popularity
+	// 				averageScore
+	// 				externalLinks {
+	// 					url
+	// 					site
+	// 				}
+	// 				coverImage {
+	// 					large
+	// 				}
+	// 			}
+	// 		}
+	// 	}
 	// `;
 
-	var { data, loading, error } = useQuery(QUERY_FAVOURITES);
+	var { data, loading, error } = useQuery(HOME_DATA_QUERY);
 
 	if (loading) {
 		return (
@@ -142,7 +100,13 @@ export default function Anime() {
 		return null;
 	}
 
-	const animes_fav = data;
+	const mostPopular = data.mostPopular;
+	const mostPopularNextSeason = data.mostPopularNextSeason;
+	const mostPopularThisSeason = data.mostPopularThisSeason;
+	const topScore = data.topScore;
+	const trendingNow = data.trendingNow;
+	
+	console.log(data);
 
 	// var { data, loading, error } = useQuery(QUERY_NEWS);
 
@@ -172,6 +136,7 @@ export default function Anime() {
 	return (
 		<>
 			<BannerAnime></BannerAnime>
+			<h2>Most Popular</h2>
 			<OwlCarousel
 				loop
 				nav={false}
@@ -182,7 +147,7 @@ export default function Anime() {
 				autoplaySpeed={2000}
 				autoplayHoverPause={true}
 			>
-				{animes_fav.Page.media.map((anime: any) => (
+				{mostPopular.media.map((anime: any) => (
 					<div key={"carousel_id_" + anime.id} className="item">
 						<AnimeCard
 							key={"anime" + anime.id}
@@ -200,7 +165,8 @@ export default function Anime() {
 					</div>
 				))}
 			</OwlCarousel>
-			{/* <OwlCarousel
+			<h2>topScore</h2>
+			<OwlCarousel
 				loop
 				nav={false}
 				responsive={Responsive}
@@ -210,7 +176,7 @@ export default function Anime() {
 				autoplaySpeed={2000}
 				autoplayHoverPause={true}
 			>
-				{animes_news.Page.media.map((anime: any) => (
+				{topScore.media.map((anime: any) => (
 					<div key={"carousel_id_" + anime.id} className="item">
 						<AnimeCard
 							key={"anime" + anime.id}
@@ -227,7 +193,7 @@ export default function Anime() {
 						/>
 					</div>
 				))}
-			</OwlCarousel> */}
+			</OwlCarousel> 
 		</>
 	);
 }
