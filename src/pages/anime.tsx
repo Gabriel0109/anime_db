@@ -109,7 +109,6 @@ export default function Anime() {
 	console.log(data);
 
 	// var { data, loading, error } = useQuery(QUERY_NEWS);
-
 	// const animes_news = data;
 
 	const Responsive = {
@@ -136,14 +135,14 @@ export default function Anime() {
 	return (
 		<>
 			<BannerAnime></BannerAnime>
-			<h2>Most Popular</h2>
+			<h2>Most Popular:</h2>
 			<OwlCarousel
 				loop
 				nav={false}
 				responsive={Responsive}
 				autoplay={true}
 				dots={false}
-				autoplayTimeout={3000}
+				autoplayTimeout={3200}
 				autoplaySpeed={2000}
 				autoplayHoverPause={true}
 			>
@@ -165,18 +164,105 @@ export default function Anime() {
 					</div>
 				))}
 			</OwlCarousel>
-			<h2>topScore</h2>
+			<h2>Most popular in the next season:</h2>
 			<OwlCarousel
 				loop
 				nav={false}
 				responsive={Responsive}
 				autoplay={true}
 				dots={false}
-				autoplayTimeout={2000}
+				autoplayTimeout={3500}
+				autoplaySpeed={2000}
+				autoplayHoverPause={true}
+			>
+				{mostPopularNextSeason.media.map((anime: any) => (
+					<div key={"carousel_id_" + anime.id} className="item">
+						<AnimeCard
+							key={"anime" + anime.id}
+							id={anime.id}
+							title={anime.title.english}
+							season={anime.season}
+							score={anime.averageScore}
+							popularity={anime.popularity}
+							episodes={anime.episodes}
+							genres={anime.genres}
+							status={anime.status}
+							link={anime.externalLinks}
+							image={anime.coverImage.large}
+						/>
+					</div>
+				))}
+			</OwlCarousel> 
+			<h2>Most popular in this season:</h2>
+			<OwlCarousel
+				loop
+				nav={false}
+				responsive={Responsive}
+				autoplay={true}
+				dots={false}
+				autoplayTimeout={3700}
+				autoplaySpeed={2000}
+				autoplayHoverPause={true}
+			>
+				{mostPopularThisSeason.media.map((anime: any) => (
+					<div key={"carousel_id_" + anime.id} className="item">
+						<AnimeCard
+							key={"anime" + anime.id}
+							id={anime.id}
+							title={anime.title.english}
+							season={anime.season}
+							score={anime.averageScore}
+							popularity={anime.popularity}
+							episodes={anime.episodes}
+							genres={anime.genres}
+							status={anime.status}
+							link={anime.externalLinks}
+							image={anime.coverImage.large}
+						/>
+					</div>
+				))}
+			</OwlCarousel> 
+			<h2>Top score:</h2>
+			<OwlCarousel
+				loop
+				nav={false}
+				responsive={Responsive}
+				autoplay={true}
+				dots={false}
+				autoplayTimeout={3900}
 				autoplaySpeed={2000}
 				autoplayHoverPause={true}
 			>
 				{topScore.media.map((anime: any) => (
+					<div key={"carousel_id_" + anime.id} className="item">
+						<AnimeCard
+							key={"anime" + anime.id}
+							id={anime.id}
+							title={anime.title.english}
+							season={anime.season}
+							score={anime.averageScore}
+							popularity={anime.popularity}
+							episodes={anime.episodes}
+							genres={anime.genres}
+							status={anime.status}
+							link={anime.externalLinks}
+							image={anime.coverImage.large}
+						/>
+					</div>
+				))}
+			</OwlCarousel> 
+			<h2>Trending now:</h2>
+			<OwlCarousel
+				loop
+				nav={false}
+				responsive={Responsive}
+				autoplay={true}
+				dots={false}
+				autoplayTimeout={3200}
+				autoplaySpeed={2000}
+				autoplayHoverPause={true}
+			>
+				{trendingNow.media.map((anime: any) => (
 					<div key={"carousel_id_" + anime.id} className="item">
 						<AnimeCard
 							key={"anime" + anime.id}
