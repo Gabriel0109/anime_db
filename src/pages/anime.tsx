@@ -4,7 +4,7 @@ import { AnimeCard } from "../components/AnimeCard";
 import { BannerAnime } from "../components/BannerAnime";
 import styled from "../assets/styles/anime.module.scss";
 
-import { HOME_DATA_QUERY } from "../services/queries/anime"
+import { HOME_DATA_QUERY } from "../services/queries/anime";
 
 var $ = require("jquery");
 if (typeof window !== "undefined") {
@@ -105,7 +105,7 @@ export default function Anime() {
 	const mostPopularThisSeason = data.mostPopularThisSeason;
 	const topScore = data.topScore;
 	const trendingNow = data.trendingNow;
-	
+
 	console.log(data);
 
 	// var { data, loading, error } = useQuery(QUERY_NEWS);
@@ -135,7 +135,9 @@ export default function Anime() {
 	return (
 		<>
 			<BannerAnime></BannerAnime>
-			<h2>Most Popular:</h2>
+			<div className={styled.animeTitleCarousel}>
+				<h2>Most Popular:</h2>
+			</div>
 			<OwlCarousel
 				loop
 				nav={false}
@@ -164,7 +166,9 @@ export default function Anime() {
 					</div>
 				))}
 			</OwlCarousel>
-			<h2>Most popular in the next season:</h2>
+			<div className={styled.animeTitleCarousel}>
+				<h2>Most popular in the next season:</h2>
+			</div>
 			<OwlCarousel
 				loop
 				nav={false}
@@ -192,8 +196,10 @@ export default function Anime() {
 						/>
 					</div>
 				))}
-			</OwlCarousel> 
-			<h2>Most popular in this season:</h2>
+			</OwlCarousel>
+			<div className={styled.animeTitleCarousel}>
+				<h2>Most popular in this season:</h2>
+			</div>
 			<OwlCarousel
 				loop
 				nav={false}
@@ -221,8 +227,10 @@ export default function Anime() {
 						/>
 					</div>
 				))}
-			</OwlCarousel> 
-			<h2>Top score:</h2>
+			</OwlCarousel>
+			<div className={styled.animeTitleCarousel}>
+				<h2>Top score:</h2>
+			</div>
 			<OwlCarousel
 				loop
 				nav={false}
@@ -250,8 +258,10 @@ export default function Anime() {
 						/>
 					</div>
 				))}
-			</OwlCarousel> 
-			<h2>Trending now:</h2>
+			</OwlCarousel>
+			<div className={styled.animeTitleCarousel}>
+				<h2>Trending now:</h2>
+			</div>
 			<OwlCarousel
 				loop
 				nav={false}
@@ -279,7 +289,7 @@ export default function Anime() {
 						/>
 					</div>
 				))}
-			</OwlCarousel> 
+			</OwlCarousel>
 		</>
 	);
 }
