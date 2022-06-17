@@ -4,7 +4,8 @@ import { MangaCard } from "../components/MangaCard";
 import { BannerManga } from "../components/BannerManga";
 
 import styled from "../assets/styles/manga.module.scss";
-import Link from "next/link";
+
+import { MANGA_HOME_DATA_QUERY } from "../services/queries/manga";
 
 var $ = require("jquery");
 if (typeof window !== "undefined") {
@@ -21,24 +22,24 @@ const OwlCarousel = dynamic(() => import("react-owl-carousel"), {
 });
 
 const Home: NextPage = () => {
-	const Responsive = {
+	const ResponsiveMostPopular = {
 		0: {
 			items: 1.2,
 		},
 		580: {
-			items: 2,
-		},
-		768: {
-			items: 2.5,
-		},
-		900: {
 			items: 3,
 		},
-		1200: {
+		768: {
 			items: 3.5,
 		},
-		1400: {
+		900: {
 			items: 4,
+		},
+		1200: {
+			items: 4.5,
+		},
+		1400: {
+			items: 5,
 		},
 	};
 
@@ -86,7 +87,7 @@ const Home: NextPage = () => {
 		}
 	`;
 
-	const { data, loading, error } = useQuery(QUERY);
+	const { data, loading, error } = useQuery(MANGA_HOME_DATA_QUERY);
 
 	if (loading) {
 		return (
@@ -121,32 +122,46 @@ const Home: NextPage = () => {
 		return null;
 	}
 
-	const mangas = data;
-	console.log("data", mangas);
+	const mostPopular = data.mostPopular;
+	const mostPopularManhwa = data.mostPopularManhwa;
+	const topScore = data.topScore;
+	const trendingNow = data.trendingNow;
+
+	console.log("data", data);
+
 	return (
 		<>
-			<BannerManga></BannerManga>
-			<OwlCarousel
-				loop
-				nav={false}
-				responsive={Responsive}
-				autoplay={true}
-				dots={false}
-				autoplayTimeout={3000}
-				autoplaySpeed={2000}
-				autoplayHoverPause={true}
-			>
-				{mangas.Page.media.map((manga: any) => (
-					<div key={"carousel_id_" + manga.id} className="item">
-						<MangaCard
-							id={manga.id}
-							key={manga.id}
-							title={manga.title.english}
-							image={manga.coverImage.large}
-						/>
+			<div className={styled.mangaFirstContent}>
+				<div id="carousel">
+					<div className={styled.mangaTitleCarousel}>
+						<h5>Most Popular:</h5>
 					</div>
-				))}
-			</OwlCarousel>
+					<OwlCarousel
+						loop
+						nav={false}
+						responsive={ResponsiveMostPopular}
+						autoplay={true}
+						dots={false}
+						autoplayTimeout={3000}
+						autoplaySpeed={2000}
+						autoplayHoverPause={true}
+					>
+						{mostPopular.media.map((manga: any) => (
+							<div
+								key={"carousel_id_" + manga.id}
+								className="item"
+							>
+								<MangaCard
+									id={manga.id}
+									key={manga.id}
+									title={manga.title.english}
+									image={manga.coverImage.large}
+								/>
+							</div>
+						))}
+					</OwlCarousel>
+				</div>
+			</div>
 		</>
 	);
 };

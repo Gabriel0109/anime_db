@@ -21,50 +21,6 @@ const OwlCarousel = dynamic(() => import("react-owl-carousel"), {
 });
 
 export default function Anime() {
-	// const QUERY_FAVOURITES = gql`
-	// 	query ($page: Int, $perPage: Int, $search: String) {
-	// 		Page(page: $page, perPage: $perPage) {
-	// 			pageInfo {
-	// 				total
-	// 				perPage
-	// 			}
-	// 			media(search: $search, type: ANIME, sort: FAVOURITES_DESC) {
-	// 				id
-	// 				title {
-	// 					romaji
-	// 					english
-	// 					native
-	// 					userPreferred
-	// 				}
-	// 				genres
-	// 				episodes
-	// 				format
-	// 				status
-	// 				isAdult
-	// 				season
-	// 				seasonYear
-	// 				endDate {
-	// 					year
-	// 					month
-	// 					day
-	// 				}
-	// 				countryOfOrigin
-	// 				isLicensed
-	// 				source
-	// 				popularity
-	// 				averageScore
-	// 				externalLinks {
-	// 					url
-	// 					site
-	// 				}
-	// 				coverImage {
-	// 					large
-	// 				}
-	// 			}
-	// 		}
-	// 	}
-	// `;
-
 	var { data, loading, error } = useQuery(HOME_DATA_QUERY);
 
 	if (loading) {
@@ -105,11 +61,6 @@ export default function Anime() {
 	const mostPopularThisSeason = data.mostPopularThisSeason;
 	const topScore = data.topScore;
 	const trendingNow = data.trendingNow;
-
-	console.log(data);
-
-	// var { data, loading, error } = useQuery(QUERY_NEWS);
-	// const animes_news = data;
 
 	const Responsive = {
 		0: {

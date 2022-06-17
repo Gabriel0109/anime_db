@@ -17,14 +17,14 @@ export function MangaCard(props: any) {
 					src={props.image}
 					alt={props.title}
 					width="100%"
-					height="400"
+					height="200"
 					unoptimized={true}
 				/>
 			) : (
 				""
 			)}
 			<div className="context-sla">
-				<h2>{props.title}</h2>
+				<h5>{props.title}</h5>
 				<Link
 					key={props.id}
 					href={{
