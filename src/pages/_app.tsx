@@ -9,8 +9,19 @@ import "bootstrap/dist/css/bootstrap.css";
 
 // global css
 import "../assets/styles/globals.scss";
+import { useEffect } from "react";
 
 function MyApp({ Component, pageProps }: AppProps) {
+	
+	useEffect(() => {
+		import("jquery/dist/jquery.slim");
+	}, []);
+
+	useEffect(() => {
+		typeof document !== undefined
+			? require("bootstrap/dist/js/bootstrap")
+			: null;
+	}, []);
 	return (
 		<>
 			<ApolloProvider client={client}>

@@ -43,50 +43,6 @@ const Home: NextPage = () => {
 		},
 	};
 
-	const QUERY = gql`
-		query ($page: Int, $perPage: Int, $search: String) {
-			Page(page: $page, perPage: $perPage) {
-				pageInfo {
-					total
-					perPage
-				}
-				media(search: $search, type: MANGA, sort: FAVOURITES_DESC) {
-					id
-					title {
-						romaji
-						english
-						native
-						userPreferred
-					}
-					genres
-					episodes
-					format
-					status
-					isAdult
-					season
-					seasonYear
-					endDate {
-						year
-						month
-						day
-					}
-					countryOfOrigin
-					isLicensed
-					source
-					popularity
-					averageScore
-					externalLinks {
-						url
-						site
-					}
-					coverImage {
-						large
-					}
-				}
-			}
-		}
-	`;
-
 	const { data, loading, error } = useQuery(MANGA_HOME_DATA_QUERY);
 
 	if (loading) {
@@ -132,34 +88,191 @@ const Home: NextPage = () => {
 	return (
 		<>
 			<div className={styled.mangaFirstContent}>
-				<div id="carousel">
-					<div className={styled.mangaTitleCarousel}>
-						<h5>Most Popular:</h5>
-					</div>
-					<OwlCarousel
-						loop
-						nav={false}
-						responsive={ResponsiveMostPopular}
-						autoplay={true}
-						dots={false}
-						autoplayTimeout={3000}
-						autoplaySpeed={2000}
-						autoplayHoverPause={true}
-					>
-						{mostPopular.media.map((manga: any) => (
-							<div
-								key={"carousel_id_" + manga.id}
-								className="item"
+				<div>
+					<ul className="nav nav-tabs" id="myTab" role="tablist">
+						<li className="nav-item" role="presentation">
+							<button
+								className="nav-link active"
+								id="home-tab"
+								data-bs-toggle="tab"
+								data-bs-target="#mostPopular"
+								type="button"
+								role="tab"
+								aria-controls="mostPopular"
+								aria-selected="true"
 							>
-								<MangaCard
-									id={manga.id}
-									key={manga.id}
-									title={manga.title.english}
-									image={manga.coverImage.large}
-								/>
-							</div>
-						))}
-					</OwlCarousel>
+								Most Popular
+							</button>
+						</li>
+						<li className="nav-item" role="presentation">
+							<button
+								className="nav-link"
+								id="profile-tab"
+								data-bs-toggle="tab"
+								data-bs-target="#mostPopularManhwa"
+								type="button"
+								role="tab"
+								aria-controls="mostPopularManhwa"
+								aria-selected="false"
+							>
+								Most Popular Manhwa
+							</button>
+						</li>
+						<li className="nav-item" role="presentation">
+							<button
+								className="nav-link"
+								id="contact-tab"
+								data-bs-toggle="tab"
+								data-bs-target="#topScore"
+								type="button"
+								role="tab"
+								aria-controls="topScore"
+								aria-selected="false"
+							>
+								Top Score
+							</button>
+						</li>
+						<li className="nav-item" role="presentation">
+							<button
+								className="nav-link"
+								id="contact-tab"
+								data-bs-toggle="tab"
+								data-bs-target="#trendingNow"
+								type="button"
+								role="tab"
+								aria-controls="trendingNow"
+								aria-selected="false"
+							>
+								Trending Now
+							</button>
+						</li>
+					</ul>
+					<div className="tab-content" id="tabInitialContentManga">
+						<div
+							className="tab-pane fade show active"
+							id="mostPopular"
+							role="tabpanel"
+							aria-labelledby="home-tab"
+						>
+							<OwlCarousel
+								loop
+								nav={false}
+								responsive={ResponsiveMostPopular}
+								autoplay={true}
+								dots={false}
+								autoplayTimeout={3000}
+								autoplaySpeed={2000}
+								autoplayHoverPause={true}
+							>
+								{mostPopular.media.map((manga: any) => (
+									<div
+										key={"carousel_id_" + manga.id}
+										className="item"
+									>
+										<MangaCard
+											id={manga.id}
+											key={manga.id}
+											title={manga.title.english}
+											image={manga.coverImage.large}
+										/>
+									</div>
+								))}
+							</OwlCarousel>
+						</div>
+						<div
+							className="tab-pane fade"
+							id="mostPopularManhwa"
+							role="tabpanel"
+							aria-labelledby="profile-tab"
+						>
+							<OwlCarousel
+								loop
+								nav={false}
+								responsive={ResponsiveMostPopular}
+								autoplay={true}
+								dots={false}
+								autoplayTimeout={3000}
+								autoplaySpeed={2000}
+								autoplayHoverPause={true}
+							>
+								{mostPopularManhwa.media.map((manga: any) => (
+									<div
+										key={"carousel_id_" + manga.id}
+										className="item"
+									>
+										<MangaCard
+											id={manga.id}
+											key={manga.id}
+											title={manga.title.english}
+											image={manga.coverImage.large}
+										/>
+									</div>
+								))}
+							</OwlCarousel>
+						</div>
+						<div
+							className="tab-pane fade"
+							id="topScore"
+							role="tabpanel"
+							aria-labelledby="contact-tab"
+						>
+							<OwlCarousel
+								loop
+								nav={false}
+								responsive={ResponsiveMostPopular}
+								autoplay={true}
+								dots={false}
+								autoplayTimeout={3000}
+								autoplaySpeed={2000}
+								autoplayHoverPause={true}
+							>
+								{topScore.media.map((manga: any) => (
+									<div
+										key={"carousel_id_" + manga.id}
+										className="item"
+									>
+										<MangaCard
+											id={manga.id}
+											key={manga.id}
+											title={manga.title.english}
+											image={manga.coverImage.large}
+										/>
+									</div>
+								))}
+							</OwlCarousel>
+						</div>
+						<div
+							className="tab-pane fade"
+							id="trendingNow"
+							role="tabpanel"
+							aria-labelledby="contact-tab"
+						>
+							<OwlCarousel
+								loop
+								nav={false}
+								responsive={ResponsiveMostPopular}
+								autoplay={true}
+								dots={false}
+								autoplayTimeout={3000}
+								autoplaySpeed={2000}
+								autoplayHoverPause={true}
+							>
+								{trendingNow.media.map((manga: any) => (
+									<div
+										key={"carousel_id_" + manga.id}
+										className="item"
+									>
+										<MangaCard
+											id={manga.id}
+											key={manga.id}
+											title={manga.title.english}
+											image={manga.coverImage.large}
+										/>
+									</div>
+								))}
+							</OwlCarousel>
+						</div>
+					</div>
 				</div>
 			</div>
 		</>
