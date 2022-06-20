@@ -1,0 +1,27 @@
+.CharacterDetailsContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    flex-wrap: wrap;
+    margin-inline: 2rem;
+    padding-top: 10rem;
+}
+
+.CharacterImgDesc {
+    padding-block: 1rem;
+    border-bottom: 1px solid #c6c6c6;
+}
+
+.CharacterImg { 
+    width: 100%;
+}
+
+.CharacterDescription {
+
+}
+
+.CharacterInfos {
+    width: 100%;
+    padding: 3rem 0rem;
+}

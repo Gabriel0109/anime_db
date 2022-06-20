@@ -4,10 +4,10 @@ import { useRouter } from "next/router";
 import styled from "../assets/styles/characterDetails.module.scss";
 import { CHARACTER_DETAILS_QUERY } from "../services/queries/character";
 
-
 export default function CharacterDetails() {
+	const { query } = useRouter();
 
-	const { data, loading, error } = useQuery(CHARACTER_DETAILS_QUERY);
+	const { data, loading, error } = useQuery(CHARACTER_DETAILS_QUERY, {variables: {id: query.id}});
 
 	if (loading) {
 		return (
@@ -42,11 +42,35 @@ export default function CharacterDetails() {
 		return null;
 	}
 
-	const character = data;
-	console.log("manga", character);
+	const character = data.Character;
+	console.log("Character", character);
 
 	return (
 		<>
-        </>
+			<div className={styled.CharacterDetailsContainer}>
+				<div className={styled.CharacterImgDesc}>
+					<div className="row">
+						<div className="col-12 mb-4">
+							<h1>{character.name.full}</h1>
+						</div>
+						<div className="col-3">
+							<img
+								className={styled.CharacterImg}
+								src={character.image.large}
+								alt={character.name.full}
+							/>
+						</div>
+						<div className="col-9">
+							<h5
+								dangerouslySetInnerHTML={{
+									__html: character.description,
+								}}
+								className={styled.CharacterDescription}
+							></h5>
+						</div>
+					</div>
+				</div>
+			</div>
+		</>
 	);
 }
