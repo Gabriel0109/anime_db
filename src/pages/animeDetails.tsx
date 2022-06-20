@@ -43,7 +43,7 @@ export default function AnimeDetails(props: any) {
 	}
 
 	const anime = data.Media;
-	console.log("data", anime);
+	console.log("Anime Details: ", anime);
 
 	return (
 		<div className={styled.AnimeDetailsContainer}>

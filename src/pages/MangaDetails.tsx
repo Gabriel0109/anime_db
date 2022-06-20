@@ -43,7 +43,7 @@ export default function MangaDetails() {
 	}
 
 	const manga = data.Media;
-	console.log("manga", manga);
+	console.log("Manga Details: ", manga);
 
 	return (
 		<div className={styled.MangaDetailsContainer}>
