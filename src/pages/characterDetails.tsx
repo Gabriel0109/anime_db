@@ -42,10 +42,11 @@ export default function CharacterDetails() {
 		return null;
 	}
 
-	const manga = data.Media;
-	console.log("manga", manga);
+	const character = data;
+	console.log("manga", character);
 
 	return (
-		<></>
+		<>
+        </>
 	);
 }

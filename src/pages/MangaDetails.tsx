@@ -2,81 +2,12 @@ import { useQuery, gql } from "@apollo/client";
 import { useRouter } from "next/router";
 
 import styled from "../assets/styles/mangaDetails.module.scss";
+import { MANGA_DETAILS_QUERY } from "../services/queries/manga";
 
 export default function MangaDetails() {
 	const { query } = useRouter();
 
-	const QUERY = gql`
-		{
-			Media(id: ${query.id}, type: MANGA) {
-				id
-				title {
-					romaji
-					english
-					native
-					userPreferred
-				}
-				description
-				hashtag
-				trailer {
-					id
-					site
-					thumbnail
-				}
-				status
-				chapters
-				volumes
-				isAdult
-				genres
-				averageScore
-				popularity
-				format
-				studios {
-					edges {
-						node {
-							isAnimationStudio
-							id
-							name
-						}
-					}
-				}
-				coverImage {
-					large
-				}
-				season
-				seasonYear
-				endDate {
-					year
-					month
-					day
-				}
-				countryOfOrigin
-				isLicensed
-				source
-				externalLinks {
-					url
-					site
-				}
-				characters(sort: [ROLE, ID]) {
-					edges {
-						id
-						role
-						node {
-							name {
-								full
-							}
-							image {
-								large
-							}
-							siteUrl
-						}
-					}
-				}
-			}
-		}
-	`;
-
-	const { data, loading, error } = useQuery(QUERY);
+	const { data, loading, error } = useQuery(MANGA_DETAILS_QUERY, {variables: {id: query.id}});
 
 	if (loading) {
 		return (
