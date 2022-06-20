@@ -1,4 +1,5 @@
 import { useQuery, gql } from "@apollo/client";
+import Link from "next/link";
 import { useRouter } from "next/router";
 
 import styled from "../assets/styles/animeDetails.module.scss";
@@ -7,7 +8,9 @@ import { ANIME_DETAILS_QUERY } from "../services/queries/anime";
 export default function AnimeDetails(props: any) {
 	const { query } = useRouter();
 
-	const { data, loading, error } = useQuery(ANIME_DETAILS_QUERY, {variables: {id: query.id}});
+	const { data, loading, error } = useQuery(ANIME_DETAILS_QUERY, {
+		variables: { id: query.id },
+	});
 
 	if (loading) {
 		return (
@@ -60,51 +63,142 @@ export default function AnimeDetails(props: any) {
 						/>
 					</div>
 					<div className="col-9">
-						<h5 dangerouslySetInnerHTML={{__html: anime.description}} className={styled.animeDescription}></h5>
+						<h5
+							dangerouslySetInnerHTML={{
+								__html: anime.description,
+							}}
+							className={styled.animeDescription}
+						></h5>
 					</div>
 				</div>
 			</div>
-			<div className={styled.AnimeInfos}>
-				<h4>Episodes: {anime.episodes}</h4>
+			<div className="mt-5 w-100">
+				<ul className="nav nav-tabs" id="myTab" role="tablist">
+					<li className="nav-item" role="presentation">
+						<button
+							className="nav-link active"
+							id="home-tab"
+							data-bs-toggle="tab"
+							data-bs-target="#mostPopular"
+							type="button"
+							role="tab"
+							aria-controls="mostPopular"
+							aria-selected="true"
+						>
+							Infos
+						</button>
+					</li>
+					<li className="nav-item" role="presentation">
+						<button
+							className="nav-link"
+							id="profile-tab"
+							data-bs-toggle="tab"
+							data-bs-target="#mostPopularManhwa"
+							type="button"
+							role="tab"
+							aria-controls="mostPopularManhwa"
+							aria-selected="false"
+						>
+							Characters
+						</button>
+					</li>
+				</ul>
+				<div className="tab-content" id="tabInitialContentManga">
+					<div
+						className="tab-pane fade show active"
+						id="mostPopular"
+						role="tabpanel"
+						aria-labelledby="home-tab"
+					>
+						<div className={styled.AnimeInfos}>
+							<h4>Episodes: {anime.episodes}</h4>
 
-				<p>Status: {anime.status}</p>
-				<p>Season: {anime.season}</p>
-				<p>SeasonYear: {anime.seasonYear}</p>
-				<p>Score: {anime.averageScore}/100</p>
-				<h4>Studio:</h4>
-				<ul className="list-unstyled">
-					{anime.studios.edges.map((studio: {}, index: number) => {
-						if (studio.node.isAnimationStudio) {
-							return (
-								<li key={"studio" + index}>
-									<p>{studio.node.name}</p>
-								</li>
-							);
-						}
-					})}
-				</ul>
-				<h4>Genres:</h4>
-				<ul className="list-unstyled">
-					{anime.genres.map((genre: string, index: number) => (
-						<li key={"genre" + index}>
-							<p>{genre}</p>
-						</li>
-					))}
-				</ul>
-				<p>
-					endDate: {anime.endDate.day}/{anime.endDate.month}/
-					{anime.endDate.year}
-				</p>
-				<h4>Assista:</h4>
-				<ul className="list-unstyled">
-					{anime.externalLinks.map((link: any, index: number) => (
-						<li key={"site" + index}>
-							<a href={link.url} target="_blank">
-								{link.site}
-							</a>
-						</li>
-					))}
-				</ul>
+							<p>Status: {anime.status}</p>
+							<p>Season: {anime.season}</p>
+							<p>SeasonYear: {anime.seasonYear}</p>
+							<p>Score: {anime.averageScore}/100</p>
+							<h4>Studio:</h4>
+							<ul className="list-unstyled">
+								{anime.studios.edges.map(
+									(studio: {}, index: number) => {
+										if (studio.node.isAnimationStudio) {
+											return (
+												<li key={"studio" + index}>
+													<p>{studio.node.name}</p>
+												</li>
+											);
+										}
+									}
+								)}
+							</ul>
+							<h4>Genres:</h4>
+							<ul className="list-unstyled">
+								{anime.genres.map(
+									(genre: string, index: number) => (
+										<li key={"genre" + index}>
+											<p>{genre}</p>
+										</li>
+									)
+								)}
+							</ul>
+							<p>
+								endDate: {anime.endDate.day}/
+								{anime.endDate.month}/{anime.endDate.year}
+							</p>
+							<h4>Assista:</h4>
+							<ul className="list-unstyled">
+								{anime.externalLinks.map(
+									(link: any, index: number) => (
+										<li key={"site" + index}>
+											<a href={link.url} target="_blank">
+												{link.site}
+											</a>
+										</li>
+									)
+								)}
+							</ul>
+						</div>
+					</div>
+					<div
+						className="tab-pane fade"
+						id="mostPopularManhwa"
+						role="tabpanel"
+						aria-labelledby="profile-tab"
+					>
+						<div className="row mt-5">
+							{anime.characters.edges.map((character: any) => {
+								return (
+									<div
+										key={character.id}
+										className="col-1 character-card"
+									>
+										<Link
+											href={{
+												pathname: "/CharacterDetails",
+												query: {
+													id: character.node.id,
+												}, // the data
+											}}
+										>
+											<a>
+												<img
+													src={
+														character.node.image
+															.medium
+													}
+													alt="character.node.name.full"
+												/>
+												<p>
+													{character.node.name.full}
+												</p>
+											</a>
+										</Link>
+									</div>
+								);
+							})}
+						</div>
+					</div>
+				</div>
 			</div>
 		</div>
 	);
