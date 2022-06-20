@@ -1,7 +1,5 @@
-import type { NextPage } from "next";
 import { useQuery, gql } from "@apollo/client";
 import { MangaCard } from "../components/MangaCard";
-import { BannerManga } from "../components/BannerManga";
 
 import styled from "../assets/styles/manga.module.scss";
 
@@ -21,7 +19,7 @@ const OwlCarousel = dynamic(() => import("react-owl-carousel"), {
 	ssr: false,
 });
 
-const Home: NextPage = () => {
+export default function Manga() {
 	const ResponsiveMostPopular = {
 		0: {
 			items: 1.2,
@@ -278,5 +276,3 @@ const Home: NextPage = () => {
 		</>
 	);
 };
-
-export default Home;
