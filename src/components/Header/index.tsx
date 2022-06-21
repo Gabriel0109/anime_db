@@ -18,6 +18,9 @@ export function Header( ){
                     <Link href="/manga">
                         <a className={asPath == '/manga' ? styles.active : ''} >Mangás</a>
                     </Link>
+                    <Link href="/staff">
+                        <a className={asPath == '/staff' ? styles.active : ''} >Staff</a>
+                    </Link>
                 </nav>
                     {/* <SignInButton /> */}
             </div>
